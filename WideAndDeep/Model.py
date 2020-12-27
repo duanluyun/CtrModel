@@ -1,6 +1,8 @@
 from DataFactory import DataFactory
 from OptionParser import OptionParser
+from ModelFactory import ModelFactory
 import Conf as conf
+
 
 
 if __name__ == '__main__':
@@ -8,7 +10,16 @@ if __name__ == '__main__':
     params=optionparser.getParams()
     datafacory=DataFactory(params)
     datamap=datafacory.getDataMap()
-    print(datamap["trainData"].columns)
+    trainData,testData=datafacory.labelData(datamap["trainData"],datamap["testData"])
+    modelfactroy=ModelFactory(params,datafacory)
+    modelfactroy.wideModel(trainData,testData)
+
+
+
+
+
+
+
 
 
 
